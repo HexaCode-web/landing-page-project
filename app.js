@@ -18,15 +18,18 @@ const body = document.querySelector(".content");
 //functions
 //for the autohide navbar
 
-document.addEventListener(
-  "scroll",
+document.addEventListener("scroll", function () {
+  window.clearTimeout(isScrolling);
+  isScrolling = setTimeout(function () {
+    navBar.style.display = "none";
+  }, 3000);
+});
+navBar.addEventListener(
+  "mouseover",
   function () {
-    window.clearTimeout(isScrolling);
-    isScrolling = setTimeout(function () {
-      navBar.style.display = "none";
-    }, 3000);
+    navBar.style.display = "block";
   },
-  false
+  true
 );
 //for the active class
 document.addEventListener("scroll", function () {

@@ -20,6 +20,9 @@ body {
   z-index: 100;
   background-color: black;
 }
+.nav-box:hover {
+  display: block;
+}
 
 ul {
   width: 90%;
