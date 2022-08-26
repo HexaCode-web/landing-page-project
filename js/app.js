@@ -1,13 +1,17 @@
 //variables
 //for the auto hiding navbar
-var isScrolling;
+let isScrolling;
+let sectionPosition;
 const navBar = document.querySelector(".nav-box");
 //for the active state
+let sections = Array.from(document.getElementsByClassName("section"));
+const menu = document.getElementById("nav");
 const section1 = document.querySelector("#section1");
 const section2 = document.querySelector("#section2");
 const section3 = document.querySelector("#section3");
 const section4 = document.querySelector("#section4");
-var ScrollToTheTop = document.getElementById("scrollToTheTop");
+const createSection = document.querySelector("#createSec");
+const ScrollToTheTop = document.getElementById("scrollToTheTop");
 const constNumber = 400;
 const clientHeight = document.documentElement.clientHeight;
 //for the active nav item
@@ -15,6 +19,15 @@ const selected = document.createElement("div");
 selected.classList.add("nav-Active");
 //for creating sections
 const body = document.querySelector(".content");
+//getting the info for the new section
+const form = document.querySelector("#form");
+const secID = document.querySelector("#secID");
+const SecHeader = document.querySelector("#SecHeader");
+const secContent = document.querySelector("#secContent");
+const secNav = document.querySelector("#secNav");
+const secNum = document.querySelector("#secNum");
+const FormBTN = document.querySelector("#submit");
+
 //functions
 //for the autohide navbar
 
@@ -32,7 +45,7 @@ navBar.addEventListener(
   true
 );
 //for the active class
-document.addEventListener("scroll", function () {
+document.addEventListener("scroll", function focusOnSection() {
   //makes the navbar visible
   navBar.style.display = "block";
   //location of the section
@@ -98,10 +111,16 @@ function myFunction(secNum) {
 //secNum for the id of the section will help in scrolling
 //header. the title of the section
 //secContent the content of the section (can be put in html code.)
-function newSection(secNum, header, secContent, navigation) {
-  const newEl = document.createElement("div");
+//navigation : the name of the navigate itme
+function newSection(secID, header, secContent, navigation, secNum) {
+  const newEl = document.createElement("section");
+  if (secNum <= 4) {
+    alert("number of the section must be above 4");
+    return;
+  }
   newEl.classList.add(`section`);
-  newEl.setAttribute(`id`, `section${secNum}`);
+  newEl.setAttribute(`id`, secID);
+  sections = Array.from(document.getElementsByClassName("section"));
   const heading = document.createElement("h2");
   heading.innerHTML = `${header}`;
   const para = document.createElement("p");
@@ -109,7 +128,27 @@ function newSection(secNum, header, secContent, navigation) {
   body.appendChild(newEl);
   newEl.appendChild(heading);
   newEl.appendChild(para);
+  sectionPosition = document
+    .querySelector(`#${secID}`)
+    .getBoundingClientRect().top;
   addNav(navigation, secNum);
+  return { sectionPosition, secID };
+}
+createSection.addEventListener("click", function () {
+  form.style.display = "flex";
+});
+function closeForm() {
+  newSection(
+    secID.value,
+    SecHeader.value,
+    secContent.value,
+    secNav.value,
+    secNum.value
+  );
+  form.style.display = "none";
+}
+function goBack() {
+  form.style.display = "none";
 }
 //called functions by default
 //note: it also creates a navigation item for it.
