@@ -107,7 +107,8 @@ function myFunction(secNum) {
   const item = document.querySelector(`#button${secNum}`);
   item.appendChild(selected);
 }
-//creates section takes 3 parameters
+//creates section takes 5 parameters
+//gets called by the button CreateSection
 //secNum for the id of the section will help in scrolling
 //header. the title of the section
 //secContent the content of the section (can be put in html code.)
@@ -134,9 +135,12 @@ function newSection(secID, header, secContent, navigation, secNum) {
   addNav(navigation, secNum);
   return { sectionPosition, secID };
 }
+//happens after you click on CreateSection button
 createSection.addEventListener("click", function () {
+  //makes the popup form visible
   form.style.display = "flex";
 });
+//creates the section AND closes the form
 function closeForm() {
   newSection(
     secID.value,
@@ -147,6 +151,7 @@ function closeForm() {
   );
   form.style.display = "none";
 }
+//gets called by goBack button
 function goBack() {
   form.style.display = "none";
 }
