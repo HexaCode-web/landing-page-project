@@ -16,4 +16,5 @@
 
 # i need help with:
 * i cant seem to figure out how to apply the active class to the newly  created section.
-* i would ask if you can help me with it.
+* stuff like the border change and the class change
+* would appreciate it if i can get help in that part
