@@ -129,9 +129,7 @@ function newSection(secID, header, secContent, navigation, secNum) {
   body.appendChild(newEl);
   newEl.appendChild(heading);
   newEl.appendChild(para);
-  sectionPosition = document
-    .querySelector(`#${secID}`)
-    .getBoundingClientRect().top;
+
   addNav(navigation, secNum);
   return { sectionPosition, secID };
 }
