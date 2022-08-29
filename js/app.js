@@ -129,9 +129,7 @@ function newSection(secID, header, secContent, navigation, secNum) {
   body.appendChild(newEl);
   newEl.appendChild(heading);
   newEl.appendChild(para);
-
   addNav(navigation, secNum);
-  return { sectionPosition, secID };
 }
 //happens after you click on CreateSection button
 createSection.addEventListener("click", function () {
@@ -140,6 +138,7 @@ createSection.addEventListener("click", function () {
 });
 //creates the section AND closes the form
 function closeForm() {
+  
   newSection(
     secID.value,
     SecHeader.value,
@@ -160,3 +159,5 @@ addNav("section1", 1);
 addNav("section2", 2);
 addNav("section3", 3);
 addNav("section4", 4);
+
+
