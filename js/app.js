@@ -69,7 +69,6 @@ document.addEventListener("scroll", function focusOnSection() {
   } else {
     section2.classList.remove("active");
   }
-
   const sec3Position = section3.getBoundingClientRect().top + constNumber;
   //needs 2 entries to get the exact correct entry
   if (clientHeight > sec3Position && sec2Position < 200 && sec3Position > 200) {
@@ -80,7 +79,6 @@ document.addEventListener("scroll", function focusOnSection() {
   } else {
     section3.classList.remove("active");
   }
-
   const sec4Position = section4.getBoundingClientRect().top + constNumber;
   if (clientHeight > sec4Position && sec4Position > -200) {
     ScrollToTheTop.style.display = "block";
@@ -129,7 +127,17 @@ function newSection(secID, header, secContent, navigation, secNum) {
   body.appendChild(newEl);
   newEl.appendChild(heading);
   newEl.appendChild(para);
-
+  document.addEventListener("scroll", () => {
+    //location of the section
+    const secPosition = newEl.getBoundingClientRect().top + constNumber;
+    //before the && is the entry point. after the && is the exist point
+    if (clientHeight > secPosition && secPosition > -200) {
+      ScrollToTheTop.style.display = "block";
+      document.querySelector(`#${secID}`).classList.add("active");
+    } else {
+      document.querySelector(`#${secID}`).classList.remove("active");
+    }
+  });
   addNav(navigation, secNum);
   return { sectionPosition, secID };
 }
